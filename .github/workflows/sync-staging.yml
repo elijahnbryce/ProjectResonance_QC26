@@ -1,0 +1,26 @@
+name: Sync Staging with main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@://github.com"
+
+      - name: Sync Staging Branch
+        run: |
+          git checkout staging
+          git merge origin/main --ff-only || git merge origin/main --no-edit
+          git push origin staging
