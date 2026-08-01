@@ -1,6 +1,9 @@
 # Project Resonance Queer Communist Game Jam 2026
 https://itch.io/jam/queercomgames2026
 
+** MAKE SURE TO WORK FROM DEV OR OTHER ALLOTED WORKING BRANCH ** 
+mrow :3
+
 ## 🛠️ How to Move Accidental Master Commits to a New Branch (Dev Workflow)
 
 If you accidentally committed changes directly to your local `master` branch and GitHub blocks your push due to repository rulesets, follow these steps using **GitHub Desktop** to move your work to a new feature branch, merge it into `dev`, and safely clean up your local `master`.
