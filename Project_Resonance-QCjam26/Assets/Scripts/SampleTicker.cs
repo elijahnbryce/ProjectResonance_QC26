@@ -30,12 +30,25 @@ public class SampleTicker : MonoBehaviour
 
     private bool isRunning;
 
+    [Header("Song")]
+    public List<Note> songNotes = new();
+    private Queue<Note> notesInView = new();
+    public List<Note> currentNote = new();
+    private Note tempNote = new();
+    private float bufferWindow = 0.067f;
+
     private void Awake()
     {
         if (_Instance == null)
             _Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        OnQuarterNote = null;
+        OnSixteenthNote = null;
     }
 
     // Call with the exact same dspTime value passed to AudioSource.PlayScheduled,
@@ -49,9 +62,12 @@ public class SampleTicker : MonoBehaviour
         sixteenthNoteCount = 0;
         quarterNoteCount = 0;
         isRunning = true;
+
+        OnSixteenthNote += PeekNextNote;
+        currentNote.Clear();
     }
 
-    public void Stop() => isRunning = false;
+    public void Stop() => isRunning = false; // unsub peeknextnote
 
     private void Update()
     {
@@ -59,17 +75,47 @@ public class SampleTicker : MonoBehaviour
 
         double now = AudioSettings.dspTime;
 
-        while (songStartDspTime + sixteenthNoteCount * secondsPerSixteenthNote <= now)
+        while (songStartDspTime + (1 + sixteenthNoteCount) * secondsPerSixteenthNote <= now)
         {
             sixteenthNoteCount++;
             OnSixteenthNote?.Invoke();
         }
 
-        while (songStartDspTime + quarterNoteCount * secondsPerQuarterNote <= now)
+        while (songStartDspTime + (1 + quarterNoteCount) * secondsPerQuarterNote <= now)
         {
             quarterNoteCount++;
             OnQuarterNote?.Invoke();
         }
     }
+
+    public bool CheckNote() => currentNote.Count > 0;
+    public bool CheckNoteTime(float dspTime = 0f) => true; // temp
+
+    private IEnumerator HighlightNote()
+    {
+        float frontWindow = Mathf.Max(0f, (float)(secondsPerSixteenthNote - bufferWindow));
+        yield return new WaitForSeconds(frontWindow);
+        currentNote.Add(tempNote);
+        yield return new WaitForSeconds(2f * bufferWindow);
+        currentNote.Clear();
+    }
+
+    private void PeekNextNote()
+    {
+        if ((songNotes.Count > 0 && songNotes[0].pos == sixteenthNoteCount + 1 ) || sixteenthNoteCount % 4 <= 3)
+        {
+            StartCoroutine(HighlightNote());
+        }
+    }
 }
 
+[System.Serializable]
+public class Note
+{
+    public int pos;
+
+    public Note(int pos = 0)
+    {
+        this.pos = pos;
+    }
+}

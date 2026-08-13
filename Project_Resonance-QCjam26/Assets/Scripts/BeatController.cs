@@ -18,21 +18,23 @@ public class BeatController : MonoBehaviour
     private void Start()
     {
         ticker = SampleTicker._Instance;
+
+        foreach (var interval in _intervals)
+        {
+            ticker.OnSixteenthNote += interval.PlayOnBeat;
+        }
         StartSong();
     }
 
     private void OnEnable()
     {
-        foreach (var interval in _intervals)
-        {
-            SampleTicker._Instance.OnSixteenthNote += interval.PlayOnInverval;
-        }
+        
     }
 
     private void OnDisable()
     {
         foreach(var interval in _intervals)
-            SampleTicker._Instance.OnSixteenthNote -= interval.PlayOnInverval;
+            SampleTicker._Instance.OnSixteenthNote -= interval.PlayOnBeat;
     }
 
     public void StartSong()
@@ -75,6 +77,11 @@ public class Intervals
     public void PlayOnInverval()
     {
         if (SampleTicker._Instance.sixteenthNoteCount % GetInterval() == 0) Trigger();
+    }
+
+    public void PlayOnBeat()
+    {
+        if (SampleTicker._Instance.CheckNote()) Trigger();
     }
 
     //public void CheckForNewInterval (float interval)
