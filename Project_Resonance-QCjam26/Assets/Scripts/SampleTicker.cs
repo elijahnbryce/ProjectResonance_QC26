@@ -93,10 +93,22 @@ public class SampleTicker : MonoBehaviour
 
     private IEnumerator HighlightNote()
     {
+        double now = AudioSettings.dspTime;
         float frontWindow = Mathf.Max(0f, (float)(secondsPerSixteenthNote - bufferWindow));
-        yield return new WaitForSeconds(frontWindow);
+        double next = now + frontWindow;
+        while(AudioSettings.dspTime  < next) 
+            yield return null;
+
+        //yield return new WaitForSeconds(frontWindow);
         currentNote.Add(tempNote);
-        yield return new WaitForSeconds(2f * bufferWindow);
+
+        now = AudioSettings.dspTime;
+        float backWindow = 2f * bufferWindow;
+        next = now + backWindow;
+        while (AudioSettings.dspTime < next) 
+            yield return null;
+
+        //yield return new WaitForSeconds(2f * bufferWindow);
         currentNote.Clear();
     }
 

@@ -21,7 +21,7 @@ public class BeatController : MonoBehaviour
 
         foreach (var interval in _intervals)
         {
-            ticker.OnSixteenthNote += interval.PlayOnBeat;
+            ticker.OnSixteenthNote += interval.PlayOnInverval;
         }
         StartSong();
     }
@@ -33,8 +33,10 @@ public class BeatController : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach(var interval in _intervals)
-            SampleTicker._Instance.OnSixteenthNote -= interval.PlayOnBeat;
+        foreach (var interval in _intervals)
+        {
+            SampleTicker._Instance.OnSixteenthNote -= interval.PlayOnInverval;
+        }
     }
 
     public void StartSong()
@@ -60,7 +62,7 @@ public class BeatController : MonoBehaviour
 public class Intervals
 {
     [SerializeField] public float _steps, _note;
-    [SerializeField] private UnityEvent _trigger;
+    [SerializeField] private UnityEvent _trigger, _trigger2;
     private int _lastInterval;
 
     /*    public float GetIntervalLength(float bpm)
@@ -72,6 +74,7 @@ public class Intervals
     public void Trigger()
     {
         _trigger?.Invoke();
+        FlashOnBeat();
     }
 
     public void PlayOnInverval()
@@ -79,9 +82,9 @@ public class Intervals
         if (SampleTicker._Instance.sixteenthNoteCount % GetInterval() == 0) Trigger();
     }
 
-    public void PlayOnBeat()
+    public void FlashOnBeat()
     {
-        if (SampleTicker._Instance.CheckNote()) Trigger();
+        if (SampleTicker._Instance.CheckNote()) _trigger2?.Invoke();
     }
 
     //public void CheckForNewInterval (float interval)
