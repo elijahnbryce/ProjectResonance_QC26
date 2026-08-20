@@ -15,12 +15,59 @@ MonoBehaviour:
   Path: ../fmod/queercommunistfmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639227689973961523
+  lastModified: 639227707646349451
   FileSizes:
   - Name: Desktop
     Value: 772
   Exists: 1
---- !u!114 &-1696003399711168118
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EventCache
+  EditorBanks:
+  - {fileID: -6250777172596627494}
+  - {fileID: 5202337207480145792}
+  EditorEvents:
+  - {fileID: 6933647933552297419}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 5202337207480145792}
+  StringsBanks:
+  - {fileID: -6250777172596627494}
+  cacheVersion: 131860
+  cacheTime: 639227707646349451
+  SerializableEventsDict:
+  - key: event:/test_event
+    index: 0
+--- !u!114 &5202337207480145792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: ../fmod/queercommunistfmod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639227707646125765
+  FileSizes:
+  - Name: Desktop
+    Value: 2909056
+  Exists: 1
+--- !u!114 &6933647933552297419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,57 +87,10 @@ MonoBehaviour:
     Data4: -102972666
   Banks:
   - {fileID: 5202337207480145792}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EventCache
-  EditorBanks:
-  - {fileID: -6250777172596627494}
-  - {fileID: 5202337207480145792}
-  EditorEvents:
-  - {fileID: -1696003399711168118}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 5202337207480145792}
-  StringsBanks:
-  - {fileID: -6250777172596627494}
-  cacheVersion: 131860
-  cacheTime: 639227689973961523
-  SerializableEventsDict:
-  - key: event:/test_event
-    index: 0
---- !u!114 &5202337207480145792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: ../fmod/queercommunistfmod/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639227689973929022
-  FileSizes:
-  - Name: Desktop
-    Value: 1612
-  Exists: 1
+  Length: 211748
