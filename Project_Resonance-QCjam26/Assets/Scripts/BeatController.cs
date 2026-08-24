@@ -70,11 +70,14 @@ public class Intervals
             return 60f / (bpm * _steps);
         }*/
 
-    public float GetInterval() => 16f / _note;
+    public float GetInterval() => 16 / _note;
     public void Trigger()
     {
+        if (!SampleTicker._Instance.CheckNote())
+            return;
         _trigger?.Invoke();
-        FlashOnBeat();
+        _trigger2?.Invoke();
+        //FlashOnBeat();
     }
 
     public void PlayOnInverval()
