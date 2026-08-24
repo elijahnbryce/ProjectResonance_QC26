@@ -15,18 +15,15 @@ public class SampleTicker : MonoBehaviour
     [Header("Song Timing (static BPM)")]
     public float bpm = 120f;
 
-    public event Action OnSixteenthNote;
-    public event Action OnQuarterNote;
+    public event Action OnSixteenthNote, OnEightNote, OnQuarterNote, OnHalfNote, OnFullNote;
 
     private double songStartDspTime;
-    private double secondsPerSixteenthNote;
-    private double secondsPerQuarterNote;
+    private double secondsPerSixteenthNote, secondsPerEightNote, secondsPerQuarterNote, secondsPerHalfNote, secondsPerWholeNote;
 
     // How many of each subdivision have fired so far. The threshold time
     // for the *next* one is always recomputed as count * unit, from the
     // fixed songStartDspTime origin -- never by adding onto a running total.
-    public int sixteenthNoteCount;
-    public int quarterNoteCount;
+    public int sixteenthNoteCount, quarterNoteCount;
 
     private bool isRunning;
 
@@ -48,7 +45,10 @@ public class SampleTicker : MonoBehaviour
     private void OnDisable()
     {
         OnQuarterNote = null;
+        OnEightNote = null;
         OnSixteenthNote = null;
+        OnHalfNote = null;
+        OnFullNote = null;
     }
 
     // Call with the exact same dspTime value passed to AudioSource.PlayScheduled,
@@ -58,6 +58,9 @@ public class SampleTicker : MonoBehaviour
         this.songStartDspTime = songStartDspTime;
         secondsPerQuarterNote = 60.0 / bpm;
         secondsPerSixteenthNote = secondsPerQuarterNote / 4.0;
+        secondsPerEightNote = secondsPerQuarterNote / 2.0;
+        secondsPerHalfNote = secondsPerQuarterNote * 2.0;
+        secondsPerWholeNote = secondsPerQuarterNote * 4.0;
 
         sixteenthNoteCount = 0;
         quarterNoteCount = 0;
@@ -91,6 +94,8 @@ public class SampleTicker : MonoBehaviour
     public bool CheckNote() => currentNote.Count > 0;
     public bool CheckNoteTime(float dspTime = 0f) => true; // temp
 
+    public bool OnNote() => SongManager._Instance.CheckNote(sixteenthNoteCount);
+
     private IEnumerator HighlightNote()
     {
         double now = AudioSettings.dspTime;
@@ -114,7 +119,9 @@ public class SampleTicker : MonoBehaviour
 
     private void PeekNextNote()
     {
-        if ((songNotes.Count > 0 && songNotes[0].pos == sixteenthNoteCount + 1 ) || sixteenthNoteCount % 4 <= 3)
+        int notePos = SongManager._Instance.GetCurrentNote();
+        //Debug.Log($"PeekNextNote: {notePos}");
+        if (notePos > 0 && notePos == sixteenthNoteCount + 1)
         {
             StartCoroutine(HighlightNote());
         }
