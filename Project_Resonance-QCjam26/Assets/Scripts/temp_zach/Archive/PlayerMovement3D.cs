@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,8 +16,10 @@ public class PlayerMovement3D : MonoBehaviour
     [Header("Gravity")]
     [SerializeField] private float gravity = -20f;
 
+    [SerializeField] int hp;
     private CharacterController controller;
     private float verticalVelocity;
+    public static PlayerMovement3D Instance;
 
     private InputAction moveAction;
 
@@ -42,6 +45,7 @@ public class PlayerMovement3D : MonoBehaviour
                      .With("Left", "<Keyboard>/leftArrow")
                      .With("Right", "<Keyboard>/rightArrow");
         }
+        Instance = this;
     }
 
     private void OnEnable()
@@ -77,5 +81,17 @@ public class PlayerMovement3D : MonoBehaviour
         move.y = verticalVelocity;
 
         controller.Move(move * Time.deltaTime);
+    }
+
+    public void hit(int damage)
+    {
+        Debug.Log($"{hp} - {damage}");
+        hp -= damage;
+        Debug.Log($"HIT, CURRENT HP: {hp}");
+        if (hp <= 0)
+        {
+            Debug.Log("DEAD!");
+            Destroy(gameObject);
+        }
     }
 }
