@@ -48,6 +48,7 @@ public class AbilityController : MonoBehaviour
     {
         if (context.performed)
             ActivateAbility(shootAbility);
+        //input action to check beat
     }
 
 
