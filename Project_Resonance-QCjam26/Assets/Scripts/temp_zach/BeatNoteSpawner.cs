@@ -50,7 +50,7 @@ public class BeatNoteSpawner : MonoBehaviour
         }
     }
 
-    private void HandleSixteenthNote()
+    private void HandleSixteenthNote() //increments sixteenth note and spawns. consistent but not tied to mapping.
     {
         sixteenthCounter++;
 
