@@ -1,17 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+
 
 public class SongManager : MonoBehaviour
 {
     public static SongManager _Instance;
 
-    public List<AudioSource> sources = new List<AudioSource>();
     public List<Song> songs = new List<Song>();
     public int currentSong = 0;
-    public int noteInx = 0;
+    private Song songPlaying;
+    public Song SongPlaying { 
+        get => songPlaying;
+        set
+        {
+            if (songPlaying != value)
+            {
+                notePositions = value != null
+                    ? new HashSet<int>(value.notes)
+                    : new HashSet<int>();
+                songPlaying = value;
+            }
+        }
+    }
+
+    private HashSet<int> notePositions = new HashSet<int>();
 
     private void Awake()
     {
@@ -21,59 +34,34 @@ public class SongManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        songs.Add(SongReader.LoadData());
-        SampleTicker._Instance.OnSixteenthNote += UpdateNoteInx;
+        var song = SongReader.LoadData();
+        songs.Add(song);
+        SetSong(0);
     }
 
-    private void OnDisable()
+    public bool CheckNote(int index) => notePositions.Contains(index);
+    public void SetSong(int inx)
     {
-        SampleTicker._Instance.OnSixteenthNote -= UpdateNoteInx;
-    }
-
-    public int GetCurrentNote() => GetNote(noteInx);
-
-    public int GetNote(int inx)
-    {
-        ref List<int> currNotes = ref songs[currentSong].notes;
-        if (inx >= currNotes.Count) 
-            return -1;
-        else 
-            return currNotes[inx];
-    }
-    public bool CheckNote(int inx) => GetNote(noteInx) == inx;
-
-    public void UpdateNoteInx()
-    {
-        int noteCount = SampleTicker._Instance.sixteenthNoteCount;
-        while (GetCurrentNote() <= noteCount)
-        {
-            noteInx++;
-        }
+        currentSong = inx;
+        SongPlaying = songs[currentSong];
     }
 }
 
-//[System.Serializable]
-//public class Note
-//{
-//    public int pos;
+/*
+ * End of SongManager
+ */
 
-//    public Note(int pos = 0)
-//    {
-//        this.pos = pos;
-//    }
-//}
 
 [System.Serializable]
 public class Song
 {
     public string name;
     public int tempo;
-    //public List<Note> notes = new();
     public List<int> notes = new();
 
-    public Song (string name, int tempo, List<int> notes)
+    public Song(string name, int tempo, List<int> notes)
     {
         this.name = name;
         this.tempo = tempo;
@@ -81,14 +69,23 @@ public class Song
     }
 }
 
+[System.Serializable]
+public class Note
+{
+    public int pos;
+
+    public Note(int pos = 0)
+    {
+        this.pos = pos;
+    }
+}
+
 public static class SongReader
 {
     public static Song LoadData(string filePath = null)
     {
-        // Define the file path (saves inside your project's Assets folder)
         filePath ??= Path.Combine(Application.dataPath, "Audio/Music/noteslist_girl-from-iponema.json");
 
-        // Verify that the file actually exists before reading
         if (File.Exists(filePath))
         {
             // Read the entire JSON file into a string variable
