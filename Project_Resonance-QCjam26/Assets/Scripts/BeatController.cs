@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class BeatController : MonoBehaviour
 {
     //[SerializeField] private float _bpm;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Intervals[] _intervals;
+    [SerializeField] private EventReference eventReference;
 
-    public SampleTicker ticker;
+    public FMODBeatTicker ticker;
 
     [Tooltip("How far ahead of 'now' to schedule playback, giving the audio " +
              "system time to prep the buffer without a hitch.")]
@@ -17,11 +19,12 @@ public class BeatController : MonoBehaviour
 
     private void Start()
     {
-        ticker = SampleTicker._Instance;
+        ticker = FMODBeatTicker._Instance;
 
         foreach (var interval in _intervals)
         {
-            ticker.OnSixteenthNote += interval.PlayOnInverval;
+            //ticker.OnSixteenthNote += interval.PlayOnInverval;
+            ticker.AutoAssignNoteOccurence(interval.Trigger, (int)interval._note);
         }
         StartSong();
     }
@@ -35,16 +38,21 @@ public class BeatController : MonoBehaviour
     {
         foreach (var interval in _intervals)
         {
-            SampleTicker._Instance.OnSixteenthNote -= interval.PlayOnInverval;
+            FMODBeatTicker._Instance.OnSixteenthNote -= interval.PlayOnInverval;
         }
     }
 
+    //public void StartSong()
+    //{
+    //    double songStartDspTime = AudioSettings.dspTime + scheduleAheadTime;
+
+    //    _audioSource.PlayScheduled(songStartDspTime);
+    //    ticker.StartTicker(songStartDspTime);
+    //}
+
     public void StartSong()
     {
-        double songStartDspTime = AudioSettings.dspTime + scheduleAheadTime;
-
-        _audioSource.PlayScheduled(songStartDspTime);
-        ticker.StartTicker(songStartDspTime);
+        ticker.StartTicker(eventReference);
     }
 
     //private void Update()
@@ -73,7 +81,7 @@ public class Intervals
     public float GetInterval() => 16 / _note;
     public void Trigger()
     {
-        if (!SampleTicker._Instance.CheckNote())
+        if (!FMODBeatTicker._Instance.CheckNote())
             return;
         _trigger?.Invoke();
         _trigger2?.Invoke();
@@ -82,13 +90,14 @@ public class Intervals
 
     public void PlayOnInverval()
     {
-        if (SampleTicker._Instance.sixteenthNoteCount % GetInterval() == 0) Trigger();
+        //if (FMODBeatTicker._Instance.sixteenthNoteCount % GetInterval() == 0) Trigger();
+        Trigger();
     }
 
-    public void FlashOnBeat()
-    {
-        if (SampleTicker._Instance.CheckNote()) _trigger2?.Invoke();
-    }
+    //public void FlashOnBeat()
+    //{
+    //    if (FMODBeatTicker._Instance.CheckNote()) _trigger2?.Invoke();
+    //}
 
     //public void CheckForNewInterval (float interval)
     //{

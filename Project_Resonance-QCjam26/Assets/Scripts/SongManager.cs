@@ -69,16 +69,16 @@ public class Song
     }
 }
 
-//[System.Serializable]
-//public class Note
-//{
-//    public int pos;
+[System.Serializable]
+public class Note
+{
+    public int pos;
 
-//public Note(int pos = 0)
-//{
-//    this.pos = pos;
-//}
-//}
+    public Note(int pos = 0)
+    {
+        this.pos = pos;
+    }
+}
 
 public static class SongReader
 {
