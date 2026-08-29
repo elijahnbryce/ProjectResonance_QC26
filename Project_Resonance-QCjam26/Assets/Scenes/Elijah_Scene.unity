@@ -874,7 +874,7 @@ MonoBehaviour:
       Data4: -102972666
     Path: event:/test_event
   Event: 
-  EventPlayTrigger: 1
+  EventPlayTrigger: 0
   EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
@@ -1104,6 +1104,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  eventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   ticker: {fileID: 0}
   scheduleAheadTime: 0.5
 --- !u!82 &1439930897
