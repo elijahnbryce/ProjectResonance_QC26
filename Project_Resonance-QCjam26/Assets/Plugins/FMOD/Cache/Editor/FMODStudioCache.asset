@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../fmod/queercommunistfmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639227707646349451
+  lastModified: 639235129021307124
   FileSizes:
   - Name: Desktop
     Value: 772
@@ -43,7 +43,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -6250777172596627494}
   cacheVersion: 131860
-  cacheTime: 639227707646349451
+  cacheTime: 639235129023189965
   SerializableEventsDict:
   - key: event:/test_event
     index: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   Path: ../fmod/queercommunistfmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639227707646125765
+  lastModified: 639235129023189965
   FileSizes:
   - Name: Desktop
     Value: 2909056
