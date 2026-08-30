@@ -5517,7 +5517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf52d5e2f85604648b45f4326bdd5828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SampleTicker
-  bpm: 136
+  bpm: 130
   sixteenthNoteCount: 0
   quarterNoteCount: 0
   songNotes: []
@@ -7001,9 +7001,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 93268505}
   inputPoint: {fileID: 1305532623}
   noteParent: {fileID: 1941845716}
-  lookAhead: 4
+  lookAhead: 1
   sixteenthsPerSpawnBeat: 4
-  BeatsToInput: 4
+  BeatsToInput: 1
 --- !u!114 &1941845718
 MonoBehaviour:
   m_ObjectHideFlags: 0
