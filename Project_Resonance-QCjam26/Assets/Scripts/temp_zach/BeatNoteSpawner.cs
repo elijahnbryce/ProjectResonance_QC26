@@ -8,6 +8,8 @@ public class BeatNoteSpawner : MonoBehaviour
     [SerializeField] private RectTransform inputPoint;
     [SerializeField] private RectTransform noteParent;
 
+    [SerializeField] private int lookAhead = 4;
+
     [Header("Timing")]
     [Tooltip("How many 16th notes make up one spawn beat. 4 = spawn once per quarter note.")]
     [SerializeField] private int sixteenthsPerSpawnBeat = 4;
@@ -52,13 +54,20 @@ public class BeatNoteSpawner : MonoBehaviour
 
     private void HandleSixteenthNote() //increments sixteenth note and spawns. consistent but not tied to mapping.
     {
-        sixteenthCounter++;
+        //sixteenthCounter++; 
 
-        if (sixteenthCounter >= sixteenthsPerSpawnBeat)
+        //if (sixteenthCounter >= sixteenthsPerSpawnBeat)
+        //{
+        //    sixteenthCounter = 0;
+        //    SpawnNote();  SongManager._Instance.CheckNote(position+lookAhead))
+        //}
+
+        int position = ticker.sixteenthNoteCount;
+        if (SongManager._Instance.CheckNote(position+lookAhead))
         {
-            sixteenthCounter = 0;
             SpawnNote();
         }
+
     }
 
     private void SpawnNote()
