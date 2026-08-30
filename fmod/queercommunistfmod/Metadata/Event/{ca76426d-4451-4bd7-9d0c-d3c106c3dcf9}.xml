@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{ca76426d-4451-4bd7-9d0c-d3c106c3dcf9}">
 		<property name="name">
-			<value>test_event</value>
+			<value>onlyAShadow</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
