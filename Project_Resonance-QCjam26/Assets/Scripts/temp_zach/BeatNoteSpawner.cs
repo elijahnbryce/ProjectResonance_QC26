@@ -16,7 +16,7 @@ public class BeatNoteSpawner : MonoBehaviour
 
     public int BeatsToInput = 4; // beats of travel time from spawn to input zone
 
-    private SampleTicker ticker;
+    private FMODBeatTicker ticker;
     private int sixteenthCounter;
     private Coroutine bindRoutine;
 
@@ -28,12 +28,12 @@ public class BeatNoteSpawner : MonoBehaviour
 
     private System.Collections.IEnumerator BindToTicker()
     {
-        while (SampleTicker._Instance == null)
+        while (FMODBeatTicker._Instance == null)
         {
             yield return null;
         }
 
-        ticker = SampleTicker._Instance;
+        ticker = FMODBeatTicker._Instance;
         ticker.OnSixteenthNote += HandleSixteenthNote;
     }
 
@@ -89,7 +89,7 @@ public class BeatNoteSpawner : MonoBehaviour
         float distance = Vector3.Distance(spawnWorldPosition, inputWorldPosition);
 
         // bpm from ticker
-        double secondsPerSixteenth = (60.0 / ticker.bpm) / 4.0;
+        double secondsPerSixteenth = (60.0 / ticker.Tempo) / 4.0;
         double secondsPerSpawnBeat = secondsPerSixteenth * sixteenthsPerSpawnBeat; //for spawning consistently like in soundfall
 
         // Total travel time = exactly BeatsToInput spawn-beats
