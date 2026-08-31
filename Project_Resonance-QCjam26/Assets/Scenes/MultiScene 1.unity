@@ -2590,6 +2590,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 21756224030140912, guid: 6599989caaef9b247a20d98b3008b015, type: 3}
   m_PrefabInstance: {fileID: 640482011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &654523005
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525784624662515542, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_Name
+      value: BeatMapper (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379735210741446022, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b263ffb22d3286e44aafa55a968e5b3a, type: 3}
 --- !u!1001 &660134728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5071,6 +5128,7 @@ GameObject:
   - component: {fileID: 1408072862}
   - component: {fileID: 1408072865}
   - component: {fileID: 1408072866}
+  - component: {fileID: 1408072867}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5228,6 +5286,20 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &1408072867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408072861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1412264079
 GameObject:
   m_ObjectHideFlags: 0
@@ -5274,13 +5346,14 @@ GameObject:
   - component: {fileID: 1439930896}
   - component: {fileID: 1439930899}
   - component: {fileID: 1439930900}
+  - component: {fileID: 1439930901}
   m_Layer: 0
   m_Name: BeatMapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1439930896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5391,6 +5464,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  eventReference:
+    Guid:
+      Data1: -898219411
+      Data2: 1272398929
+      Data3: -1043133283
+      Data4: -102972666
+    Path: event:/test_event
   ticker: {fileID: 0}
   scheduleAheadTime: 0.5
 --- !u!82 &1439930897
@@ -5512,16 +5592,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439930895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf52d5e2f85604648b45f4326bdd5828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SampleTicker
-  bpm: 136
-  sixteenthNoteCount: 0
-  quarterNoteCount: 0
-  songNotes: []
-  currentNote: []
 --- !u!114 &1439930900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5536,6 +5611,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SongManager
   songs: []
   currentSong: 0
+--- !u!114 &1439930901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439930895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d74e6dae4384042831a228ed155522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODBeatTicker
+  songNotes: []
+  currentNote: []
 --- !u!1 &1449969755
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,6 +7675,7 @@ SceneRoots:
   - {fileID: 1408072864}
   - {fileID: 1149373997}
   - {fileID: 624186978}
+  - {fileID: 654523005}
   - {fileID: 1439930898}
   - {fileID: 1023123231}
   - {fileID: 135966474}
