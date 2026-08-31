@@ -46,6 +46,8 @@ public class FMODBeatTicker : MonoBehaviour
     private bool hasAnchor;
     private bool isRunning;
 
+    public float Tempo { get; private set; }
+
     [Header("Song")]
     public List<Note> songNotes = new();
     public List<Note> currentNote = new();
@@ -180,6 +182,8 @@ public class FMODBeatTicker : MonoBehaviour
         anchorSixteenthCount = hasAnchor ? RoundToNearestMultiple(sixteenthNoteCount, 4) : 0;
         anchorSeconds = timelineInfo.beatPositionSeconds;
         hasAnchor = true;
+
+        Tempo = timelineInfo.tempo;
     }
 
     private static int RoundToNearestMultiple(int value, int multiple)
