@@ -53,7 +53,7 @@ public class NoteAutoScroller : MonoBehaviour
         speed = moveSpeed;
 
         // Start the note on the same clock as the ticker/audio.
-        lastDspTime = AudioSettings.dspTime;
+        lastDspTime = FMODBeatTicker._Instance.GetTimelineSeconds();
 
         // Every newly initialized note starts unhit.
         SetNoteState(NoteState.UnhitNote);
@@ -69,7 +69,7 @@ public class NoteAutoScroller : MonoBehaviour
         }
 
         // DSP-time movement
-        double now = AudioSettings.dspTime;
+        double now = FMODBeatTicker._Instance.GetTimelineSeconds();
         float dt = (float)(now - lastDspTime);
         lastDspTime = now;
 
