@@ -29,10 +29,6 @@ public class BeatController : MonoBehaviour
         StartSong();
     }
 
-    private void OnEnable()
-    {
-        
-    }
 
     private void OnDisable()
     {
