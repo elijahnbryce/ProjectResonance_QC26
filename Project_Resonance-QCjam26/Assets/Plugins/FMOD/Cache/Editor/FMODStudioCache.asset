@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../fmod/queercommunistfmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639227707646349451
+  lastModified: 639242981924038974
   FileSizes:
   - Name: Desktop
-    Value: 772
+    Value: 868
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -36,17 +36,73 @@ MonoBehaviour:
   - {fileID: -6250777172596627494}
   - {fileID: 5202337207480145792}
   EditorEvents:
-  - {fileID: 6933647933552297419}
+  - {fileID: 2774217297228139899}
+  - {fileID: 8986205234488328178}
+  - {fileID: 4474883123448487763}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5202337207480145792}
   StringsBanks:
   - {fileID: -6250777172596627494}
   cacheVersion: 131860
-  cacheTime: 639227707646349451
+  cacheTime: 639242981924038974
   SerializableEventsDict:
   - key: event:/test_event
     index: 0
+--- !u!114 &2774217297228139899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/qcjDemo
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/qcjDemo
+  Guid:
+    Data1: 833267505
+    Data2: 1336957404
+    Data3: -683311213
+    Data4: 731248228
+  Banks:
+  - {fileID: 5202337207480145792}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 62801
+--- !u!114 &4474883123448487763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/girlFromIpanema
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/girlFromIpanema
+  Guid:
+    Data1: 51855554
+    Data2: 1111525811
+    Data3: -1896918639
+    Data4: -1619427443
+  Banks:
+  - {fileID: 5202337207480145792}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 76904
 --- !u!114 &5202337207480145792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,12 +118,12 @@ MonoBehaviour:
   Path: ../fmod/queercommunistfmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639227707646125765
+  lastModified: 639242981923699772
   FileSizes:
   - Name: Desktop
-    Value: 2909056
+    Value: 4741280
   Exists: 1
---- !u!114 &6933647933552297419
+--- !u!114 &8986205234488328178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,9 +133,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/test_event
+  m_Name: event:/onlyAShadow
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/test_event
+  Path: event:/onlyAShadow
   Guid:
     Data1: -898219411
     Data2: 1272398929
